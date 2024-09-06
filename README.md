@@ -19,14 +19,6 @@ This steps install libraries, download data, the MONAN model and the scripts to 
 ~~~
  git clone https://github.com/monanadmin/scripts_laptop_MONAN.git
 ~~~
-you will get this directories:
-~~~
-datain/namelists
-scripts
-~~~
-
-- The `datain/namelists` directory contains all versioned namelists needded for run and compile all phases of model;
-- The `scripts` directory is the most important folder that contains all the scripts that you will need to install, compile, run, and produce produtcs of the A-MONAN model.
 
 
 Switch to last version and enter the scripts directory.
@@ -39,30 +31,42 @@ git checkout 0.1.0
 cd 0.1.0
 ~~~
 
+you will get this directories:
+~~~
+datain/namelists
+scripts
+~~~
+
+- The `datain/namelists` directory contains all versioned namelists needded for run and compile all phases of model;
+- The `scripts` directory is the most important folder that contains all the scripts that you will need to install, compile, run, and produce produtcs of the A-MONAN model.
+
 
 **2. Install spack:**
 
 Install spack, that is a dependency manager for installing libraries. It installs libraries locally, without damaging your system libraries.
 ~~~
+cd scripts
 ./install_spack.bash
 ~~~
 
 **3. Install the MPAS dependencies and other packages using spack:**
 
-**IMPORTANT: Execute the command below again in case you stoped the sequence of commands from here, then continue executing the commands, starting from the last command (inclusive) you ran**
+Execute the command below to load spack:
 ~~~
 source spack/env.sh
 ~~~
+This will give you acess to `spack` command.
+**IMPORTANT: Execute the command above again in case you stoped the sequence of commands from here, then continue executing the commands, starting from the last command (inclusive) you ran**
 
-The command below will show the compilers you have.
-
+Run the command below to add the compilers you have into spack and show them.
 ~~~
 spack compiler find
+spack compilers
 ~~~
 
-Check its version in the results and then use the right version of the compiler in mpas-model and wps instalation below. Example, if the command above returns `gcc@9.4.0  gcc@8.4.0  gcc@7.5.0`, use the most recent version `gcc@9.4.0`, i.e. below.
+Check the results and then use the right version of the compiler in mpas-model and wps instalation below. Example, if the command above returns `gcc@9.4.0  gcc@8.4.0  gcc@7.5.0`, use the most recent version `gcc@9.4.0`, i.e. below.
 
-IMPORTANT: **If this command doesn't shows any compilers, you'll need to install one before, for example, the gcc compiler before.** Check https://fortran-lang.org/learn/os_setup/install_gfortran/ . To simplify this, just try `sudo apt install gfortran-9` to install the gfortran-9.4.0.
+IMPORTANT: **If this command doesn't shows any compilers, you'll need to install one before, for example, the gcc compiler.** Check https://fortran-lang.org/learn/os_setup/install_gfortran/ . To simplify this, just try `sudo apt install gfortran-9` to install the gfortran-9.4.0.
 
 ~~~
 spack clean --all
