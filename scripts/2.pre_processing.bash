@@ -65,25 +65,14 @@ git log -1 --name-only
 git branch | head -1
 
 
-if [ ! -d ${DATAIN}/fixed ]
+if [ ! -d ${DATAIN}/fixed ] || [ ! -d ${DATAIN}/WPS_GEOG ]
 then
-   echo "Please download the tgz data, untar it into the datain directory:"
-   echo "datain/fixed"
-   echo "datain/WPS_GEOG"
    echo ""
-   echo "wget https://ftp.cptec.inpe.br/pesquisa/dmdcc/volatil/Renato/scripts_CD-CT_datain.tgz"
+   echo "Execution Stopped: Please download the tgz data, untar it into the datain directory, as documented in README.md file:"
+   echo ""
    exit
 fi
 chmod 775 -R ${DATAIN}
-if [ ! -d ${DATAIN}/WPS_GEOG ]
-then
-   echo "Please download the tgz data, untar it into the datain directory:"
-   echo "datain/fixed"
-   echo "datain/WPS_GEOG"
-   echo ""
-   echo "wget https://ftp.cptec.inpe.br/pesquisa/dmdcc/volatil/Renato/scripts_CD-CT_datain.tgz"
-   exit
-fi
 
 
 # Creating the x1.${RES}.static.nc file once, if does not exist yet:---------------
