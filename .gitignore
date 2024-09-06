@@ -1,0 +1,8 @@
+datain
+!datain/namelists
+dataout
+execs
+.venv
+scripts/GF_ConvPar_nml
+scripts/spack
+sources
