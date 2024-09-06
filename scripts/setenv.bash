@@ -48,11 +48,11 @@ export PMIX_MCA_gds=hash
 export MPI_PARAMS="-iface ib0 -bind-to core -map-by core"
 
 # Libraries paths:
-# $(spack location -i pacote)
+# use the following command line to find the libraries:
+# spack find -p netcdf-c netcdf-fortran parallel-netcdf
 export NETCDF=/home/user/scripts_laptop_MONAN/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/netcdf-c-4.9.2-wtzgun3w5as3xah4cdiaphd7geurfqqn
 export PNETCDF=/home/user/scripts_laptop_MONAN/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/parallel-netcdf-1.12.3-ctuelfvjop3kyhy74z5ggtf644glvo7f
 export NETCDFF=/home/user/scripts_laptop_MONAN/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/netcdf-fortran-4.6.1-vvb6bm27p6jd7hhv3jvkwilq2c2nefbo
-
 
 export NETCDFDIR=${NETCDF}
 export PNETCDFDIR=${PNETCDF}
