@@ -1,6 +1,6 @@
 # MONAN - Model for Ocean-laNd-Atmosphere PredictioN
 
-### *Laptop version for running MONAN in personal computers*
+## *Laptop version for running MONAN in personal computers*
 
 This procedure aims to create a version for testing MONAN using laptops, running MONAN at low resolution using GFS.
 
@@ -9,17 +9,15 @@ In Section *Run the MONAN Model*, it shows how to run MONAN model using the scri
 
 This version is based in 0.2.1 scripts_CD-CT version for Egeon
 
-Preparing to run the model
-==========================
+## Preparing to run the model
 
 This steps install libraries, download data, the MONAN model and the scripts to run.
 
-**1. First of all, clone the suite scripts that you will use:**
+### 1. First of all, clone the suite scripts that you will use
 
 ~~~
  git clone https://github.com/monanadmin/scripts_laptop_MONAN.git
 ~~~
-
 
 Switch to last version and enter the scripts directory.
 
@@ -41,7 +39,7 @@ scripts
 - The `scripts` directory is the most important folder that contains all the scripts that you will need to install, compile, run, and produce produtcs of the A-MONAN model.
 
 
-**2. Install spack:**
+### 2. Install spack
 
 Install spack, that is a dependency manager for installing libraries. It installs libraries locally, without damaging your system libraries.
 ~~~
@@ -49,7 +47,7 @@ cd scripts
 ./install_spack.bash
 ~~~
 
-**3. Install the MPAS dependencies and other packages using spack:**
+### 3. Install the MPAS dependencies and other packages using spack
 
 Execute the command below to load spack:
 ~~~
@@ -86,7 +84,7 @@ sudo apt install cdo
 
 Some versions of packages could be different using different versions of the compiler. The versions above, i.e. metis version 5.1.0, are compliant with the gcc@9.4.0. If you have problems when installing, for example "package not found", suggesting another version, you can use the version suggested or simply do not use the version of the package, i.e. "metis%gcc@11.4.0", will select the metis version appropriate for gcc@11.4.0.
 
-**4. Configure the PNETCDF and NETCDF environment vars**
+### 4. Configure the PNETCDF and NETCDF environment vars
 
 execute below to find the correct path ...
 ~~~
@@ -103,7 +101,7 @@ Libraries paths:
 ~~~
 
 
-**5. Download the data pack into scripts_laptop_MONAN/datain directory:**
+### 5. Download the data pack into scripts_laptop_MONAN/datain directory
 
 This are fixed data and must be downloaded only once. First check if you have available space (at least 120 GB)
 
@@ -165,9 +163,9 @@ datain
 ~~~
 
 
-**4.1 Optional**
+#### 5.1 Optional - Other Initial Conditions (IC)
 
-For other CI dates, you can get by:
+For other IC, you can get by:
 ~~~
   wget https://ftp.ncep.noaa.gov/data/nccf/com/gfs/prod/gfs.20240819/00/atmos/gfs.t00z.pgrb2.0p25.f000
 ~~~
@@ -180,14 +178,12 @@ mv gfs.t00z.pgrb2.0p25.f000.2024081900.grib2 2024081900
 ~~~
 
 
-Run the MONAN Model
-===================
-
+## Run the MONAN Model
 
 You will need to execute only 6 steps scripts, so you can run the Atmospheric MONAN Model:
 
 
-**1. Install the model:**
+### 1. Install the model
 
 If your intent is just test the model with original code, execute:
 ~~~
@@ -196,7 +192,7 @@ If your intent is just test the model with original code, execute:
 
 If you intend to develop, first you need to get a **fork repository** in your github account of a MONAN oficial repo: `https://github.com/monanadmin/MONAN-Model`. Attention! Uncheck "Copy the main branch only" in the fork creation step to copy all branches. 
 
-The you can install the model in your work directory by running:
+Then you can install the model in your work directory by running:
 
 ~~~
 ./1.install_monan.bash <https://github.com/MYUSER/MONAN-Model-My-Fork.git> <OPTIONAL_tag_or_branch_name_MONAN-Model-My-Fork> <OPTIONAL_tag_or_branch_namer_Convert-MPAS>
@@ -210,12 +206,12 @@ Default values:
 
 The command 1.install_monan.bash will create the diretories structure:
 ~~~
-scripts_laptop_MONAN/
-       scripts
-       sources
-       execs
-       datain
-       dataout
+scripts_laptop_MONAN
+├── scripts
+├── sources
+├── execs
+├── datain
+└── dataout
 ~~~
 
 Where:
@@ -227,59 +223,67 @@ Where:
      - `dataout\Pre\<YYYYMMDDHH>` will contain all the output files from the pre-processing phase, mostly are all the initial condition for run the MONAN;
      - `dataout\Model\<YYYYMMDDHH>` will contain all the output files from the MONAN model;
      - `dataout\Post\<YYYYMMDDHH>` will contain all the output files from the post-processing phase of the MONAN;
-     - `dataout\Prods\<YYYYMMDDHH>` will contain all the output files from the products generated, graphics, derivated variables, peace of domain, etc.
 
 After running the first step, it will clone the MONAN model from your fork repo in a `source` diretory.
 
 
-**2. Prepare the Initial Conditions for the model:**
+### 2. Prepare the Initial Conditions for the model
 
-Just run the second script as follows:
+The command below will show the options for preprocessing (same options for scripts 2 to 4):
 
 ~~~
-2.pre_processing.bash EXP_NAME RESOLUTION LABELI FCST
-
-EXP_NAME    :: Forcing: GFS
-            :: Others options to be added later...
-RESOLUTION  :: number of points in resolution model grid, e.g: 1024002  (24 km)
-LABELI      :: Initial date YYYYMMDDHH, e.g.: 2024010100
-FCST        :: Forecast hours, e.g.: 24 or 36, etc.
+2.pre_processing.bash
+~~~
 
 480Km resolution 24 hour forcast example:
-
+~~~
 ./2.pre_processing.bash GFS 2562 2024080800 24
 ~~~
 
-**3. Run the model:**
+Check the results at the dataout/YYYYMMDDHH00/Pre directory
 
-Execute the 3rd step script:
+### 3. Run the model
 
+The command below will show the options for running the model (same options for scripts 2 to 4):
+
+480Km resolution 24 hour forcast example:
 ~~~
-3.run_model.bash EXP_NAME RESOLUTION LABELI FCST
-
-EXP_NAME    :: Forcing: GFS
-            :: Others options to be added later...
-RESOLUTION  :: number of points in resolution model grid, e.g: 1024002  (24 km)
-LABELI      :: Initial date YYYYMMDDHH, e.g.: 2024010100
-FCST        :: Forecast hours, e.g.: 24 or 36, etc.
-
-24 hour forcast example:
-./3.run_model.bash GFS 1024002 2024010100 24
+./3.run_model.bash GFS 2562 2024010100 24
 ~~~
 
-**4. Run the post-processing model:**
+Check the results at the dataout/YYYYMMDDHH00/Model directory
+
+### 4. Run the post-processing model
+
+The command below will show the options for running the post processing (same options for scripts 2 to 4):
 
 Execute the 4th step script:
 
+480Km resolution 24 hour forcast example:
 ~~~
-4.run_post.bash EXP_NAME RESOLUTION LABELI FCST
-
-EXP_NAME    :: Forcing: GFS
-            :: Others options to be added later...
-RESOLUTION  :: number of points in resolution model grid, e.g: 1024002  (24 km)
-LABELI      :: Initial date YYYYMMDDHH, e.g.: 2024010100
-FCST        :: Forecast hours, e.g.: 24 or 36, etc.
-
-24 hour forcast example:
-./4.run_post.bash GFS 1024002 2024010100 24
+.4.run_post.bash GFS 2562 2024010100 24
 ~~~
+
+Check the results at the dataout/YYYYMMDDHH00/Post directory
+
+You may view the results by using ncview <FILENAME> ou grads "sdfopen FILENAME", or other programs that could open and display netcdf files
+
+Example using grads:
+
+Installation using package manager (best choice, faster):
+
+~~~
+sudo apt install grads
+~~~
+
+or installation using spack (slower)
+~~~
+spack install --add grads@2.2.3
+~~~
+
+Example, opening the 480Km resolution file:
+~~~
+cd dataout/YYYYMMDDHH00/Post
+grads -lc "sdfopen MONAN_DIAG_G_POS_GFS_YYYYMMDDHH.00.00.x2562L55.nc
+~~~~
+
