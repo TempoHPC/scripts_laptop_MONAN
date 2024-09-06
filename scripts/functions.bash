@@ -28,20 +28,20 @@ clean_model_tmp_files () {
 
    echo "Removed all temporary files from scripts executions"
 
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/atmosphere_model
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/*TBL
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/*DBL
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/*DATA
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/x1.*.nc
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/x1.*.graph.info.part.*
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/Vtable.GFS
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/streams.atmosphere
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/stream_list.atmosphere.surface
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/stream_list.atmosphere.output
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/stream_list.atmosphere.diagnostics
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/namelist.atmosphere
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/MONAN_DIAG_*
-   rm -f ${DIR_SCRIPTS}/scripts_CD-CT/scripts/log.atmosphere.*
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/atmosphere_model
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/*TBL
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/*DBL
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/*DATA
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/x1.*.nc
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/x1.*.graph.info.part.*
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/Vtable.GFS
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/streams.atmosphere
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/stream_list.atmosphere.surface
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/stream_list.atmosphere.output
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/stream_list.atmosphere.diagnostics
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/namelist.atmosphere
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/MONAN_DIAG_*
+   rm -f ${DIR_SCRIPTS}/scripts_laptop_MONAN/scripts/log.atmosphere.*
    echo ""
    
 }

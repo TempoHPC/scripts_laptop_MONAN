@@ -11,12 +11,6 @@ spack load metis
 spack load --list
 
 
-# Baixar pelo menos 1 vez o pacote de dados abaixo em scripts_CD-CT/datain:
-# wget https://ftp.cptec.inpe.br/pesquisa/dmdcc/volatil/Renato/scripts_CD-CT_datain.tgz
-# Baixar a CI do GFS em scripts_CD-CT/datain:
-# wget https://ftp.cptec.inpe.br/pesquisa/dmdcc/volatil/Renato/GFS:2024-08-07_00
-
-
 # Set environment variables and importants directories-------------------------------------------------- 
 
 # MONAN-suite install root directories:
@@ -55,9 +49,9 @@ export MPI_PARAMS="-iface ib0 -bind-to core -map-by core"
 
 # Libraries paths:
 # $(spack location -i pacote)
-export NETCDF=/home/user/scripts_CD-CT/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/netcdf-c-4.9.2-wtzgun3w5as3xah4cdiaphd7geurfqqn
-export PNETCDF=/home/user/scripts_CD-CT/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/parallel-netcdf-1.12.3-ctuelfvjop3kyhy74z5ggtf644glvo7f
-export NETCDFF=/home/user/scripts_CD-CT/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/netcdf-fortran-4.6.1-vvb6bm27p6jd7hhv3jvkwilq2c2nefbo
+export NETCDF=/home/user/scripts_laptop_MONAN/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/netcdf-c-4.9.2-wtzgun3w5as3xah4cdiaphd7geurfqqn
+export PNETCDF=/home/user/scripts_laptop_MONAN/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/parallel-netcdf-1.12.3-ctuelfvjop3kyhy74z5ggtf644glvo7f
+export NETCDFF=/home/user/scripts_laptop_MONAN/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/netcdf-fortran-4.6.1-vvb6bm27p6jd7hhv3jvkwilq2c2nefbo
 
 
 export NETCDFDIR=${NETCDF}

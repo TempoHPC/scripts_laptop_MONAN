@@ -33,8 +33,8 @@ fi
 . setenv.bash
 
 # Standart directories variables:---------------------------------------
-DIRHOMES=${DIR_SCRIPTS}/scripts_CD-CT; mkdir -p ${DIRHOMES}  
-DIRHOMED=${DIR_DADOS}/scripts_CD-CT;   mkdir -p ${DIRHOMED}  
+DIRHOMES=${DIR_SCRIPTS}/scripts_laptop_MONAN; mkdir -p ${DIRHOMES}  
+DIRHOMED=${DIR_DADOS}/scripts_laptop_MONAN;   mkdir -p ${DIRHOMED}  
 SCRIPTS=${DIRHOMES}/scripts;           mkdir -p ${SCRIPTS}
 DATAIN=${DIRHOMED}/datain;             mkdir -p ${DATAIN}
 DATAOUT=${DIRHOMED}/dataout;           mkdir -p ${DATAOUT}
@@ -60,7 +60,7 @@ final_date=${yyyymmddhhf:0:4}-${yyyymmddhhf:4:2}-${yyyymmddhhf:6:2}_${yyyymmddhh
 #-------------------------------------------------------
 
 
-echo -e  "${GREEN}==>${NC} Scripts_CD-CT last commit: \n"
+echo -e  "${GREEN}==>${NC} scripts_laptop_MONAN last commit: \n"
 git log -1 --name-only
 git branch | head -1
 

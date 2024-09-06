@@ -17,7 +17,7 @@ This steps install libraries, download data, the MONAN model and the scripts to 
 **1. First of all, clone the suite scripts that you will use:**
 
 ~~~
- git clone https://github.com/monanadmin/scripts_CD-CT.git
+ git clone https://github.com/monanadmin/scripts_laptop_MONAN.git
 ~~~
 you will get this directories:
 ~~~
@@ -29,10 +29,14 @@ scripts
 - The `scripts` directory is the most important folder that contains all the scripts that you will need to install, compile, run, and produce produtcs of the A-MONAN model.
 
 
-Switch to temporary correct branch "mylocal_version_0.2.1" and enter the scripts directory.
+Switch to last version and enter the scripts directory.
+
 ~~~
-git checkout mylocal_version_0.2.1
-cd mylocal_version_0.2.1
+# Check the latest version
+git tag 
+# get the latest version
+git checkout 0.1.0
+cd 0.1.0
 ~~~
 
 
@@ -45,19 +49,20 @@ Install spack, that is a dependency manager for installing libraries. It install
 
 **3. Install the MPAS dependencies and other packages using spack:**
 
-*IMPORTANT: Execute the command below again in case you stoped the sequence of commands from here, then continue executing the commands, starting from the last command (inclusive) you ran )*
+**IMPORTANT: Execute the command below again in case you stoped the sequence of commands from here, then continue executing the commands, starting from the last command (inclusive) you ran**
 ~~~
 source spack/env.sh
 ~~~
 
-The command below will show the gcc compiler you have. Check its version in the results of this command and use it instead of the version 9.4.0, just in case there are diferences. For example, use the command returned  gcc@9.4.0. So use this version in all the commands below.
-
+The command below will show the compilers you have.
 
 ~~~
 spack compiler find
 ~~~
 
-Then use the right version of the compiler in mpas-model and wps instalation below. Example, if the command above returns `gcc@9.4.0  gcc@8.4.0  gcc@7.5.0`, use the most recent version `gcc@9.4.0`, i.e. below.
+Check its version in the results and then use the right version of the compiler in mpas-model and wps instalation below. Example, if the command above returns `gcc@9.4.0  gcc@8.4.0  gcc@7.5.0`, use the most recent version `gcc@9.4.0`, i.e. below.
+
+IMPORTANT: **If this command doesn't shows any compilers, you'll need to install one before, for example, the gcc compiler before.** Check https://fortran-lang.org/learn/os_setup/install_gfortran/ . To simplify this, just try `sudo apt install gfortran-9` to install the gfortran-9.4.0.
 
 ~~~
 spack clean --all
@@ -75,7 +80,7 @@ spack install
 sudo apt install cdo  
 ~~~
 
-Some versions of packages could be different using different versions of the compiler. The versions above, i.e. metis version 5.1.0, are compliant with the gcc@9.4.0. If you have problems when installing, for example "package not found", suggesting another version, you can use the version suggested or simply do not use the version, i.e. "metis%gcc@9.4.0"
+Some versions of packages could be different using different versions of the compiler. The versions above, i.e. metis version 5.1.0, are compliant with the gcc@9.4.0. If you have problems when installing, for example "package not found", suggesting another version, you can use the version suggested or simply do not use the version of the package, i.e. "metis%gcc@11.4.0", will select the metis version appropriate for gcc@11.4.0.
 
 **4. Configure the PNETCDF and NETCDF environment vars**
 
@@ -84,16 +89,17 @@ execute below to find the correct path ...
 spack find -p netcdf-c netcdf-fortran parallel-netcdf
 ~~~ 
 
-... and modify the lines below in scripts_CD-CT/scripts/setenv.bash script, by updating the paths shown in the command above. I.e:
+... and modify the lines below in scripts_laptop_MONAN/scripts/setenv.bash script, by updating the paths shown in the command above. I.e:
 
 Libraries paths:
 ~~~
-  export NETCDF=/home/user/repo/scripts_CD-CT/scripts/spack/opt/spack/linux-ubuntu22.04-haswell/gcc-11.4.0/netcdf-c-4.9.2-mrzvvju2bmuw76i6r6byrx2kn6ygyhqg
-  export PNETCDF=/home/user/repo/scripts_CD-CT/scripts/spack/opt/spack/linux-ubuntu22.04-haswell/gcc-11.4.0/parallel-netcdf-1.12.3-dgphmay73qspxoi3pkqkpzocf4gb2oq3
+  export NETCDF=/home/user/scripts_laptop_MONAN/scripts/spack/opt/spack/linux-ubuntu22.04-haswell/gcc-11.4.0/netcdf-c-4.9.2-mrzvvju2bmuw76i6r6byrx2kn6ygyhqg
+  export NETCDFF=/home/user/scripts_laptop_MONAN/scripts/spack/opt/spack/linux-ubuntu18.04-skylake/gcc-9.4.0/netcdf-fortran-4.6.1-vvb6bm27p6jd7hhv3jvkwilq2c2nefbo
+  export PNETCDF=/home/user/scripts_laptop_MONAN/scripts/spack/opt/spack/linux-ubuntu22.04-haswell/gcc-11.4.0/parallel-netcdf-1.12.3-dgphmay73qspxoi3pkqkpzocf4gb2oq3
 ~~~
 
 
-**5. Download the data pack into scripts_CD-CT/datain directory:**
+**5. Download the data pack into scripts_laptop_MONAN/datain directory:**
 
 This are fixed data and must be downloaded only once. First check if you have available space (at least 120 GB)
 
@@ -101,7 +107,7 @@ This are fixed data and must be downloaded only once. First check if you have av
 Enter the datain directory:
 
 ~~~
-cd scripts_CD-CT/datain
+cd scripts_laptop_MONAN/datain
 ~~~
 
 Run the lines below to get data. This step takes about 20 minutes to finish.
@@ -117,11 +123,11 @@ tar -xzvf scripts_CD-CT_datain.tgz
 
 The following directories will be generated by the command above:
 ~~~
-  scripts_CD-CT/datain/fixed
-  scripts_CD-CT/datain/WPS_GEOG
+  scripts_laptop_MONAN/datain/fixed
+  scripts_laptop_MONAN/datain/WPS_GEOG
 ~~~
 
-Now move gfs file to the data directory inside datain:
+Now execute the commands:
 ~~~
 mkdir 2024080800
 mv gfs.t00z.pgrb2.0p25.f000.2024080800.grib2 2024080800
@@ -172,7 +178,7 @@ Default values:
 
 The command 1.install_monan.bash will create the diretories structure:
 ~~~
-scripts_CD-CT/
+scripts_laptop_MONAN/
        scripts
        sources
        execs
