@@ -7,7 +7,9 @@ This procedure aims to create a version for testing MONAN using laptops, running
 Is Section *Preparing to run the model*, it install libraries, download data, the MONAN model and the scripts to run.
 In Section *Run the MONAN Model*, it shows how to run MONAN model using the scripts.
 
-This version is based in 0.2.1 scripts_CD-CT version for Egeon
+## History
+
+0.1.0 - Initial version using spack, based in 0.2.1 scripts_CD-CT version for Egeon
 
 ## Preparing to run the model
 
